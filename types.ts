@@ -1,3 +1,4 @@
+// FEEL FREE TO EDIT OR CHANGE
 
 // An invite to a collaborational calendar from a user to another user
 export type InviteProps = {
