@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Box, Button, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import {EventProps, InviteProps} from "@/types";
 
 const StyledMain = styled.main`
     width: 100%;
