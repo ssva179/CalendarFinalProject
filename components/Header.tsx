@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from 'styled-components';
 
 const StyledTitle = styled.h1`
@@ -6,18 +7,20 @@ const StyledTitle = styled.h1`
 `;
 
 const StyledHeader = styled.header`
-    width: 100%;
-    height: 10vh;
+    width: 100vw;
+    height: 15vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: wheat;
+    background: #81A6C6;
 `;
 
 export default function Header() {
     return (
         <StyledHeader>
-            <StyledTitle>Calendar Project</StyledTitle>
+            <Link href="/">
+                <StyledTitle>Calendar Project</StyledTitle>
+            </Link>
         </StyledHeader>
     )
 }
