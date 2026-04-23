@@ -56,7 +56,7 @@ export default function AddEventPage() {
       userEmail
     );
 
-    router.push("/"); 
+    router.push("/calendar"); 
     router.refresh();
   }
 

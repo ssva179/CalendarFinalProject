@@ -134,8 +134,8 @@ export default function EventCard({ event, onClose }: EventCardProps) {
                     startIcon={<DeleteOutlinedIcon />}
                     onClick={async () => {
                         await deleteEvent(event.id);
+                        router.refresh(); 
                         onClose();
-                        router.refresh();
                     }}
                 >
                 Delete Event
