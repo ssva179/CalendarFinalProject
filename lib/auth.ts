@@ -1,4 +1,4 @@
-import NextAuth from "next-auth"
+import NextAuth, { getServerSession, type NextAuthOptions } from "next-auth"
 import GitHub from "next-auth/providers/github"
 import getCollection, {USERS_COLLECTION} from "@/db";
 
@@ -20,8 +20,12 @@ async function createUser(user: any) {
     })
 }
 //If user doesn't exist we add to database
-export const { handlers, auth } = NextAuth({
-    providers: [GitHub],
+export const authOptions: NextAuthOptions = {
+    providers: [GitHub({
+        clientId: process.env.AUTH_GITHUB_ID ?? process.env.GITHUB_ID ?? "",
+        clientSecret: process.env.AUTH_GITHUB_SECRET ?? process.env.GITHUB_SECRET ?? "",
+    })],
+    secret: process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET,
     events:{async signIn({user}) {
             if (!user.email){
                 return
@@ -30,6 +34,12 @@ export const { handlers, auth } = NextAuth({
             if (!exists) {await createUser(user)}
         }
     }
+}
 
-})
+const handler = NextAuth(authOptions)
 
+export const handlers = { GET: handler, POST: handler }
+
+export function auth() {
+    return getServerSession(authOptions)
+}

@@ -16,6 +16,7 @@ export default async function createNewEvent(
         end, 
         notes,
         userEmail,
+        eventSource: "manual",
     };
 
     const eventsCollection = await getCollection("events-collection");
