@@ -4,6 +4,8 @@ import { useState } from "react";
 import createNewEvent from "@/lib/createNewEvent";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation"
+
 
 import Nav from "@/components/Nav";
 import Header from "@/components/Header";
@@ -56,8 +58,7 @@ export default function AddEventPage() {
       userEmail
     );
 
-    router.push("/calendar"); 
-    router.refresh();
+    redirect("/calendar")
   }
 
   return (
