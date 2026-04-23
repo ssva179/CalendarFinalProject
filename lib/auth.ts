@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import NextAuth from "next-auth";
 import GitHub from "next-auth/providers/github";
 import getCollection, { USERS_COLLECTION } from "@/db";
@@ -11,6 +12,12 @@ if (!AUTH_GITHUB_ID || !AUTH_GITHUB_SECRET) {
         "Missing AUTH_GITHUB_ID or AUTH_GITHUB_SECRET in .env.local"
     );
 }
+=======
+import NextAuth from "next-auth"
+import GitHub from "next-auth/providers/github"
+import getCollection, {USERS_COLLECTION} from "@/db";
+
+>>>>>>> b029b970f1ff04ade93d67053a1b3bc0ff47cb48
 
 async function findEmail(email: string) {
     const users = await getCollection(USERS_COLLECTION);

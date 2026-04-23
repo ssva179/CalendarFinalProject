@@ -1,7 +1,6 @@
-"use client";
 import Calendar from '@/components/Calendar';
 import WidgetsPanel from '@/components/WidgetsPanel';
-import { sampleCalendar } from "@/samplecalendar"; // NEED TO ACTUALLY FETCH CALENDAR DATA FROM MONGODB
+import getAllEvents from "@/lib/getAllEvents";
 
 import styled from 'styled-components';
 import { Box } from '@mui/material';
@@ -16,7 +15,14 @@ const StyledMain = styled.main`
     box-sizing: border-box;
 `;
 
-export default function Home() {
+export default async function Home() {
+    const events = await getAllEvents();
+
+    const calendar = {id: "cal-1",
+        name: "My Calendar",
+        events,
+    };
+
     return (
         <>
             <Header />
@@ -35,7 +41,7 @@ export default function Home() {
                 <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: 'calc(100% - 60px)' }}>
                     {/* Calendar view and arrows */}
                     <Box sx={{ height: "80vh", bgcolor: "#D2C4B4" }}>
-                        <Calendar calendar={sampleCalendar} />
+                        <Calendar calendar={calendar} />
                     </Box>
                     {/* Widget panel */}
                     <WidgetsPanel />

@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useRef } from "react";
 import { EventProps, CalendarProps } from "@/types";
 
@@ -21,8 +23,8 @@ function toFCEvents(events: EventProps[]) {
     return events.map((e) => ({
         id: e.id,
         title: e.name,
-        start: e.start,
-        end: e.end,
+        start: new Date(e.start),
+        end: new Date(e.end),
         extendedProps: { original: e },
     }));
 }

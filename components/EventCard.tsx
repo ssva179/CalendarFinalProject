@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { EventProps } from "@/types";
+import deleteEvent from "@/lib/deleteEvent";
+import { useRouter } from "next/navigation";
 
 // MUI imports
 import { Box, Typography, IconButton, Chip, Divider, Button } from "@mui/material";
@@ -32,6 +36,8 @@ export type EventCardProps = {
 };
 
 export default function EventCard({ event, onClose }: EventCardProps) {
+    const router = useRouter();
+
     return (
         <>
             {/* Header */}
@@ -123,15 +129,16 @@ export default function EventCard({ event, onClose }: EventCardProps) {
             {/* Footer */}
             <Box sx={{ px: 3, py: 2, borderTop: "1px solid", borderColor: "divider" }}>
                 <Button
-                    component={Link}
-                    href={`/calendar/delete_event?id=${event.id}`}
                     variant="outlined"
                     color="error"
-                    size="small"
                     startIcon={<DeleteOutlinedIcon />}
-                    fullWidth
+                    onClick={async () => {
+                        await deleteEvent(event.id);
+                        router.refresh(); 
+                        onClose();
+                    }}
                 >
-                    Delete Event
+                Delete Event
                 </Button>
             </Box>
         </>
