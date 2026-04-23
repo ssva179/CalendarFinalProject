@@ -1,7 +1,9 @@
-export default function ProfilePage() {
+import ProfileForm from "@/app/profile/ProfileForm";
+
+export default async function Home() {
     return (
-        <>
-            <h1>Profile Page</h1>
-        </>
+        <div className="flex flex-col items-center justify-center bg-blue-200 p-4 min-h-screen">
+            <ProfileForm />
+        </div>
     );
 }

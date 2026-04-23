@@ -1,42 +1,25 @@
-"use client";
-import Calendar from '@/components/Calendar';
-import WidgetsPanel from '@/components/WidgetsPanel';
-import { sampleCalendar } from "@/samplecalendar"; // NEED TO ACTUALLY FETCH CALENDAR DATA FROM MONGODB
+import { auth } from "@/lib/auth"
+import { redirect } from "next/navigation"
+import getCollection, {USERS_COLLECTION} from "@/db";
 
-import styled from 'styled-components';
-import { Box } from '@mui/material';
+export default async function Home() {
+    //session cookies handled by Auth.js:
+    //https://authjs.dev/getting-started/session-management/get-session
+    const session = await auth()
+    //we check if anything is null and restart log in
+    if (!session || !session.user || !session.user.email) {
+        redirect("/login")
+    }
+    const users = await getCollection(USERS_COLLECTION)
 
-const StyledMain = styled.main`
-    width: 100%;
-    height: 90vh;
-    background: #F3E3D0;
-    padding: 24px;
-    box-sizing: border-box;
-`;
+    const user = await users.findOne({email: session.user.email,})
+    //if for some reason user is not in db
+    if (!user) {
+        redirect("/login")
+    }
+    if(!user.hasProfile) {
+        redirect("/profile") //user has not created profile yet
+    }
+    redirect("/calendar") //user has profile take to calendar
 
-export default function Home() {
-    return (
-        <>
-            <Box
-                component="main"
-                sx={{
-                    width: "100%",
-                    height: "90vh",
-                    background: "#F3E3D0",
-                    padding: "24px",
-                    boxSizing: "border-box",
-                }}
-            >
-                {/* Calendar and Widgets */}
-                <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: 'calc(100% - 60px)' }}>
-                    {/* Calendar view and arrows */}
-                    <Box sx={{ height: "80vh", bgcolor: "#D2C4B4" }}>
-                        <Calendar calendar={sampleCalendar} />
-                    </Box>
-                    {/* Widget panel */}
-                    <WidgetsPanel />
-                </Box>
-            </Box>
-        </>
-    );
 }

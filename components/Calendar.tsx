@@ -14,6 +14,7 @@ import { Drawer, Box } from "@mui/material";
 
 // Components
 import EventCard from "./EventCard";
+import Nav from "@/components/Nav";
 
 // Helpers
 function toFCEvents(events: EventProps[]) {
@@ -60,6 +61,7 @@ export function Calendar({ calendar }: { calendar: CalendarProps }) {
     };
 
     return (
+
         <Box
             sx={{
                 height: "100%",

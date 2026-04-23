@@ -5,6 +5,9 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Link from "next/link";
+import {SignOut} from "@/components/authentication/SignOut";
+import { useSession } from "next-auth/react";
+
 
 export default function NavMenu() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -15,6 +18,18 @@ export default function NavMenu() {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    //Using session hook in NextAuth to see if were signed in
+    // https://next-auth.js.org/getting-started/client
+    const {data:session} = useSession();
+    const auth = session?(
+        <MenuItem onClick={handleClose}>
+            <SignOut />
+        </MenuItem>
+    ) :(
+        <MenuItem onClick={handleClose}>
+            <Link href="/login">LOGIN</Link>
+        </MenuItem>
+    );
 
     return (
         <div>
@@ -45,15 +60,8 @@ export default function NavMenu() {
                     <Link href={'/calendar/import'}>IMPORT .ics FILE</Link>
                 </MenuItem>
 
-                {/* SHOULD SWITCH TO LOGOUT WHEN AUTHENTICATED */}
-                <MenuItem onClick={handleClose}>
-                    <Link href={'/login'}>LOGIN</Link>
-                </MenuItem>
-
-                {/* SHOULD BE VISIBLE IF NOT LOGGED IN */}
-                <MenuItem onClick={handleClose}>
-                    <Link href={'/signup'}>SIGN UP</Link>
-                </MenuItem>
+                {/* SWITCH LOGIN LOGOUT */}
+                {auth}
             </Menu>
         </div>
     );

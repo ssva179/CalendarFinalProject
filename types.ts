@@ -28,3 +28,9 @@ export type UserProps = {
     username: string;
     calendar: CalendarProps;
 }
+
+export type User = {
+    email: string;
+    name: string;
+    hasProfile: boolean;
+}
