@@ -14,7 +14,7 @@ export default function WidgetsPanel() {
         <Box
             sx={{
                 width: 300,
-                bgcolor: "#e0e0e0",
+                bgcolor: "#e0e0e0", // background: "#F3E3D0",
                 borderRadius: 4,
                 p: 3,
                 display: "flex",
@@ -23,13 +23,13 @@ export default function WidgetsPanel() {
                 border: "1px solid #000",
             }}
         >
-            <Typography variant="h6" sx={{ textAlign: "center" }}>
+            <Typography variant="h6" sx={{ textAlign: "center", color: "#000" }}>
                 Widgets
             </Typography>
 
             {/* --- Pending invites (received) --- */}
             <Box>
-                <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>
+                <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1, color: "#000"  }}>
                     Invites
                 </Typography>
                 <InvitesWidget />
@@ -37,7 +37,7 @@ export default function WidgetsPanel() {
 
             {/* --- Send a new invite --- */}
             <Box>
-                <Typography variant="subtitle2" sx={{ fontWeight: "bold", mb: 0.5 }}>
+                <Typography variant="subtitle2" sx={{ fontWeight: "bold", mb: 0.5, color: "#000"  }}>
                     Share an event
                 </Typography>
                 <SendInviteForm />
@@ -47,7 +47,7 @@ export default function WidgetsPanel() {
 
             {/* --- Upcoming events --- */}
             <Box>
-                <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>
+                <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1, color: "#000"  }}>
                     Upcoming events
                 </Typography>
                 <UpcomingEventsWidget />

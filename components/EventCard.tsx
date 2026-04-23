@@ -101,7 +101,7 @@ export default function EventCard({ event, onClose }: EventCardProps) {
                     {/* Notes */}
                     {event.notes.length > 0 && (
                         <>
-                            <Divider />
+                            <Divider sx={{ borderColor: "#c9b8a3" }}/>
                             <Box sx={{ display: "flex", gap: 1.5, alignItems: "flex-start" }}>
                                 <NotesIcon fontSize="small" sx={{ mt: 0.25, color: "text.secondary" }} />
                                 <Box sx={{ flex: 1 }}>
@@ -127,7 +127,7 @@ export default function EventCard({ event, onClose }: EventCardProps) {
             </Box>
 
             {/* Footer */}
-            <Box sx={{ px: 3, py: 2, borderTop: "1px solid", borderColor: "divider" }}>
+            <Box sx={{ px: 3, py: 2, borderTop: "1px solid #b8a48f", borderColor: "#b8a48f " }}>
                 <Button
                     variant="outlined"
                     color="error"
