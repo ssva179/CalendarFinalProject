@@ -1,4 +1,3 @@
-"use client";
 import Calendar from '@/components/Calendar';
 import WidgetsPanel from '@/components/WidgetsPanel';
 import getAllEvents from "@/lib/getAllEvents";
