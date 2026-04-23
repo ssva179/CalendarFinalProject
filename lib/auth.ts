@@ -1,7 +1,17 @@
-import NextAuth from "next-auth"
-import GitHub from "next-auth/providers/github"
-import getCollection, {USERS_COLLECTION} from "@/db";
+import NextAuth from "next-auth";
+import GitHub from "next-auth/providers/github";
+import getCollection, { USERS_COLLECTION } from "@/db";
+
+
+// Narrow env vars from `string | undefined` to `string` so the GitHub
+// provider config type-checks, and fail fast with a clear message if
+// someone forgot to set them in .env.local.
 const { AUTH_GITHUB_ID, AUTH_GITHUB_SECRET } = process.env;
+if (!AUTH_GITHUB_ID || !AUTH_GITHUB_SECRET) {
+    throw new Error(
+        "Missing AUTH_GITHUB_ID or AUTH_GITHUB_SECRET in .env.local"
+    );
+}
 
 
 async function findEmail(email: string) {
@@ -13,8 +23,10 @@ async function findEmail(email: string) {
     return false;
 }
 
+
 async function createUser(user: any) {
     const users = await getCollection(USERS_COLLECTION);
+
 
     return users.insertOne({
         name: user.name,
@@ -22,6 +34,7 @@ async function createUser(user: any) {
         hasProfile: false,
     });
 }
+
 
 // If user doesn't exist we add to database
 export const { handlers, auth } = NextAuth({
