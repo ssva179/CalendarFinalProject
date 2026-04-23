@@ -1,4 +1,6 @@
 import {Collection, Db, MongoClient} from "mongodb";
+export const EVENTS_COLLECTION = "events-collection";   // for widget invite 
+export const INVITES_COLLECTION = "invites-collection"; //for widget invite 
 
 const MONGO_URI = process.env.MONGO_URI as string;
 

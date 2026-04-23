@@ -1,37 +1,53 @@
-import NextAuth from "next-auth"
-import GitHub from "next-auth/providers/github"
-import getCollection, {USERS_COLLECTION} from "@/db";
+import NextAuth from "next-auth";
+import GitHub from "next-auth/providers/github";
+import getCollection, { USERS_COLLECTION } from "@/db";
 
-
-
+// Narrow env vars from `string | undefined` to `string` so the GitHub
+// provider config type-checks, and fail fast with a clear message if
+// someone forgot to set them in .env.local.
+const { AUTH_GITHUB_ID, AUTH_GITHUB_SECRET } = process.env;
+if (!AUTH_GITHUB_ID || !AUTH_GITHUB_SECRET) {
+    throw new Error(
+        "Missing AUTH_GITHUB_ID or AUTH_GITHUB_SECRET in .env.local"
+    );
+}
 
 async function findEmail(email: string) {
-    const users = await getCollection(USERS_COLLECTION)
-    const exists = await users.findOne({email});
+    const users = await getCollection(USERS_COLLECTION);
+    const exists = await users.findOne({ email });
     if (exists) {
         return true;
-    }return false;
+    }
+    return false;
 }
+
 async function createUser(user: any) {
-    const users = await getCollection(USERS_COLLECTION)
+    const users = await getCollection(USERS_COLLECTION);
 
     return users.insertOne({
         name: user.name,
         email: user.email,
         hasProfile: false,
-    })
+    });
 }
-//If user doesn't exist we add to database
+
+// If user doesn't exist we add to database
 export const { handlers, auth } = NextAuth({
-    providers: [GitHub],
-    events:{async signIn({user}) {
-            if (!user.email){
-                return
+    providers: [
+        GitHub({
+            clientId: AUTH_GITHUB_ID,
+            clientSecret: AUTH_GITHUB_SECRET,
+        }),
+    ],
+    events: {
+        async signIn({ user }) {
+            if (!user.email) {
+                return;
             }
-            const exists = await findEmail(user.email)
-            if (!exists) {await createUser(user)}
-        }
-    }
-
-})
-
+            const exists = await findEmail(user.email);
+            if (!exists) {
+                await createUser(user);
+            }
+        },
+    },
+});
