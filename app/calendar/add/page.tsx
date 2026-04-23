@@ -5,6 +5,9 @@ import createNewEvent from "@/lib/createNewEvent";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
+import Nav from "@/components/Nav";
+import Header from "@/components/Header";
+
 import { Box, TextField, Button, Typography } from "@mui/material";
 import styled from "styled-components";
 
@@ -58,56 +61,61 @@ export default function AddEventPage() {
   }
 
   return (
-    <Container>
-      <FormBox>
-        <Typography variant="h5" sx={{ mb: 3, fontWeight: 600, color: "#81A6C6" }}>
-          Add New Event
-        </Typography>
+      <>
+        <Header />
+        <Nav/>
+        <Container>
+          <FormBox>
+            <Typography variant="h5" sx={{ mb: 3, fontWeight: 600, color: "#81A6C6" }}>
+              Add New Event
+            </Typography>
 
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          
-          <TextField
-            label="Event Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            fullWidth
-          />
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
 
-          <TextField
-            label="Start Time"
-            type="datetime-local"
-            value={start}
-            onChange={(e) => setStart(e.target.value)}
-          />
+              <TextField
+                  label="Event Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  fullWidth
+              />
 
-          <TextField
-            label="End Time"
-            type="datetime-local"
-            value={end}
-            onChange={(e) => setEnd(e.target.value)}
-          />
+              <TextField
+                  label="Start Time"
+                  type="datetime-local"
+                  value={start}
+                  onChange={(e) => setStart(e.target.value)}
+              />
 
-          <TextField
-            label="Notes"
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-            multiline
-            rows={3}
-          />
+              <TextField
+                  label="End Time"
+                  type="datetime-local"
+                  value={end}
+                  onChange={(e) => setEnd(e.target.value)}
+              />
 
-          <Button
-            variant="contained"
-            onClick={handleSubmit}
-            sx={{
-              mt: 2,
-              background: "linear-gradient(45deg, #81A6C6, #81A6C6)",
-              fontWeight: 600,
-            }}
-          >
-            Create Event
-          </Button>
-        </Box>
-      </FormBox>
-    </Container>
+              <TextField
+                  label="Notes"
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                  multiline
+                  rows={3}
+              />
+
+              <Button
+                  variant="contained"
+                  onClick={handleSubmit}
+                  sx={{
+                    mt: 2,
+                    background: "linear-gradient(45deg, #81A6C6, #81A6C6)",
+                    fontWeight: 600,
+                  }}
+              >
+                Create Event
+              </Button>
+            </Box>
+          </FormBox>
+        </Container>
+      </>
+
   );
 }
