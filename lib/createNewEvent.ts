@@ -1,7 +1,7 @@
 "use server";
 
 import { EventProps } from "@/types";
-import getCollection, { EVENTS_COLLECTION } from "@/db";
+import getCollection from "@/db";
 
 export default async function createNewEvent(
     name: string,
@@ -18,7 +18,7 @@ export default async function createNewEvent(
         userEmail,
     };
 
-    const eventsCollection = await getCollection(EVENTS_COLLECTION);
+    const eventsCollection = await getCollection("events-collection");
     const res = await eventsCollection.insertOne(e);
 
     if (!res.acknowledged) {
