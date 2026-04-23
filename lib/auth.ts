@@ -3,8 +3,6 @@ import GitHub from "next-auth/providers/github"
 import getCollection, {USERS_COLLECTION} from "@/db";
 
 
-
-
 async function findEmail(email: string) {
     const users = await getCollection(USERS_COLLECTION)
     const exists = await users.findOne({email});
