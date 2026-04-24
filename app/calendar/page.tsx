@@ -1,19 +1,9 @@
+import {Box, Typography} from '@mui/material';
+import Nav from "@/components/Nav";
+import Header from "@/components/Header";
 import Calendar from '@/components/Calendar';
 import WidgetsPanel from '@/components/WidgetsPanel';
 import getAllEvents from "@/lib/getAllEvents";
-
-import styled from 'styled-components';
-import { Box } from '@mui/material';
-import Nav from "@/components/Nav";
-import Header from "@/components/Header";
-
-const StyledMain = styled.main`
-    width: 100%;
-    height: 90vh;
-    background: #F3E3D0;
-    padding: 24px;
-    box-sizing: border-box;
-`;
 
 export default async function Home() {
     const events = await getAllEvents();
@@ -30,21 +20,41 @@ export default async function Home() {
             <Box
                 component="main"
                 sx={{
-                    width: "100%",
-                    height: "90vh",
+                    width: "100vw",
+                    height: "100vh",
                     background: "#F3E3D0",
                     padding: "24px",
                     boxSizing: "border-box",
                 }}
             >
                 {/* Calendar and Widgets */}
-                <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: 'calc(100% - 60px)' }}>
-                    {/* Calendar view and arrows */}
-                    <Box sx={{ height: "80vh", width: "70vw", backgroundColor: "#D2C4B4" }}>
+                <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: '85vh' }}>
+
+                    {/* Calendar panel */}
+                    <Box sx={{ height: "80vh", width: "75vw"}}>
+                        <Typography
+                            variant="h4"
+                            sx={{
+                                fontWeight: 700,
+                                letterSpacing: "0.05em",
+                                textTransform: "uppercase",
+                                borderLeft: "4px solid",
+                                borderColor: "primary.main",
+                                pl: 1.5,
+                                mb: 2,
+                                color: "#000"
+                            }}
+                        >
+                            {calendar.name}
+                        </Typography>
+
                         <Calendar calendar={calendar} />
                     </Box>
+
                     {/* Widget panel */}
-                    <WidgetsPanel />
+                    <Box>
+                        <WidgetsPanel />
+                    </Box>
                 </Box>
             </Box>
         </>

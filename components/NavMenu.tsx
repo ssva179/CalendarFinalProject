@@ -8,11 +8,11 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Link from "next/link";
-// import {SignOut} from "@/components/authentication/SignOut";
-// import { signOut, useSession } from "next-auth/react";
-import { ReactNode } from "react";
+// import {SignOut} from "@/components/authentication/SignOut"; // edited below
+import { signOut, useSession } from "next-auth/react";
+import {Box} from "@mui/material";
 
-export default function NavMenu({ auth }: { auth: ReactNode }) {
+export default function NavMenu() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
@@ -25,27 +25,26 @@ export default function NavMenu({ auth }: { auth: ReactNode }) {
 
     //Using session hook in NextAuth to see if were signed in
     // https://next-auth.js.org/getting-started/client
+    const {data:session} = useSession();
+    const auth = session?(
+        // <MenuItem onClick={handleClose}>
+        //     <SignOut />
+        // </MenuItem>
 
-    // const {data:session} = useSession();
-    // const auth = session?(
-    //     // <MenuItem onClick={handleClose}>
-    //     //     <SignOut />
-    //     // </MenuItem>
-    //
-    //     // SEE ORIGINAL IN /component/authentication/SignOut.tsx
-    //     // MOVED FUNCTION DIRECTLY TO MenuItem SO IT TAKES 100% OF THE SPACE
-    //     // ELSE THE BUTTON WOULD NOT WORK IF NOT CLICKED IN A SPECIFIC PLACE
-    //     <MenuItem onClick={() => signOut({ callbackUrl: "/login" })}>
-    //         Sign Out
-    //     </MenuItem>
-    // ) :(
-    //     <MenuItem component={Link} href="/login" onClick={handleClose}>
-    //         Log In
-    //     </MenuItem>
-    // );
+        // CHECK ORIGINAL IN /component/authentication/SignOut.tsx
+        // MOVED FUNCTION DIRECTLY TO MenuItem SO IT TAKES 100% OF THE SPACE
+        // ELSE THE BUTTON WOULD NOT WORK IF NOT CLICKED IN A SPECIFIC PLACE
+        <MenuItem onClick={() => signOut({ callbackUrl: "/login" })}>
+            Sign Out
+        </MenuItem>
+    ) :(
+        <MenuItem component={Link} href="/login" onClick={handleClose}>
+            Log In
+        </MenuItem>
+    );
 
     return (
-        <div>
+        <Box>
             <Button
                 id="basic-button"
                 aria-controls={open ? 'basic-menu' : undefined}
@@ -81,6 +80,6 @@ export default function NavMenu({ auth }: { auth: ReactNode }) {
                 {/* SWITCH LOGIN LOGOUT */}
                 {auth}
             </Menu>
-        </div>
+        </Box>
     );
 }

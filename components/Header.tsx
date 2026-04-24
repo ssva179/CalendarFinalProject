@@ -13,6 +13,7 @@ const StyledHeader = styled.header`
     justify-content: center;
     align-items: center;
     background: #81A6C6;
+    font-weight: 700;
 `;
 
 export default function Header() {
