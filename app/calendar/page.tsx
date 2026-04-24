@@ -40,7 +40,7 @@ export default async function Home() {
                 {/* Calendar and Widgets */}
                 <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: 'calc(100% - 60px)' }}>
                     {/* Calendar view and arrows */}
-                    <Box sx={{ height: "80vh", bgcolor: "#D2C4B4" }}>
+                    <Box sx={{ height: "80vh", width: "70vw", backgroundColor: "#D2C4B4" }}>
                         <Calendar calendar={calendar} />
                     </Box>
                     {/* Widget panel */}

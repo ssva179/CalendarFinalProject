@@ -54,7 +54,7 @@ export default function UpcomingEventsWidget() {
             {events.map((e) => (
                 <Box
                     key={e.id}
-                    sx={{ bgcolor: "#fff", borderRadius: 1.5, p: 1, border: "1px solid #ddd" }}
+                    sx={{ color: "#000000", borderRadius: 1.5, p: 1, border: "1px solid #ddd" }}
                 >
                     <Typography variant="body2" sx={{ fontWeight: 600 }}>
                         {e.name}

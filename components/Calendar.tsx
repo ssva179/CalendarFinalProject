@@ -16,7 +16,6 @@ import { Drawer, Box } from "@mui/material";
 
 // Components
 import EventCard from "./EventCard";
-import Nav from "@/components/Nav";
 
 // Helpers
 function toFCEvents(events: EventProps[]) {
@@ -69,13 +68,13 @@ export function Calendar({ calendar }: { calendar: CalendarProps }) {
                 height: "100%",
                 display: "flex",
                 flexDirection: "column",
-                "& .fc": { fontFamily: "inherit", flex: 1 },
-                "& .fc-button": {
-                    textTransform: "none !important",
-                    fontFamily: "inherit !important",
-                },
-                "& .fc-event": { cursor: "pointer", borderRadius: "4px !important" },
-                "& .fc-daygrid-event": { px: "4px" },
+                "& .fc": { fontFamily: "inherit", flex: 1, color: "#000" },
+                "& .fc-theme-standard td, & .fc-theme-standard th": { borderColor: "#000" },
+                "& .fc-theme-standard .fc-scrollgrid": { borderColor: "#000" },
+                "& .fc-col-header-cell": { color: "#000" },
+                "& .fc-daygrid-day-number": { color: "#000" },
+                border: "1px solid #000",
+                borderRadius: 4,
             }}
         >
             <FullCalendar
