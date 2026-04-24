@@ -49,3 +49,12 @@ export type User = {
     name: string;
     hasProfile: boolean;
 }
+
+export type stringEvent = {
+    id: string;
+    name: string;
+    start: string;
+    end: string;
+    notes: string[];
+    userEmail: string;
+};

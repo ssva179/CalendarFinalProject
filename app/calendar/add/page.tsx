@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import createNewEvent from "@/lib/createNewEvent";
-import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation"
+
 
 import Nav from "@/components/Nav";
 import Header from "@/components/Header";
@@ -29,7 +30,6 @@ const FormBox = styled.div`
 
 export default function AddEventPage() {
   const { data: session } = useSession();
-  const router = useRouter();
 
   const [name, setName] = useState("");
   const [start, setStart] = useState("");
@@ -56,8 +56,7 @@ export default function AddEventPage() {
       userEmail
     );
 
-    router.push("/calendar"); 
-    router.refresh();
+    redirect("/calendar")
   }
 
   return (
@@ -80,14 +79,12 @@ export default function AddEventPage() {
               />
 
               <TextField
-                  label="Start Time"
                   type="datetime-local"
                   value={start}
                   onChange={(e) => setStart(e.target.value)}
               />
 
               <TextField
-                  label="End Time"
                   type="datetime-local"
                   value={end}
                   onChange={(e) => setEnd(e.target.value)}

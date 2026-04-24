@@ -13,21 +13,17 @@ if (!AUTH_GITHUB_ID || !AUTH_GITHUB_SECRET) {
     );
 }
 
-
 async function findEmail(email: string) {
     const users = await getCollection(USERS_COLLECTION);
     const exists = await users.findOne({ email });
     if (exists) {
         return true;
-    }
-    return false;
+    }return false;
 }
 
 
 async function createUser(user: any) {
     const users = await getCollection(USERS_COLLECTION);
-
-
     return users.insertOne({
         name: user.name,
         email: user.email,
