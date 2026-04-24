@@ -9,22 +9,19 @@ const StyledNav = styled.nav`
 `;
 
 const StyledUl = styled.ul`
+    width: 80%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin: auto;
 `;
 
 export default function Nav() {
     return (
       <StyledNav>
           <StyledUl>
-              <li>
-                  <NavMenu />
-              </li>
-              <li>
-                  <Link href={'/login'}>LOGIN</Link>
-              </li>
+              <li><NavMenu /></li>
           </StyledUl>
       </StyledNav>
     );

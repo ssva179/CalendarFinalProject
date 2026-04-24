@@ -8,7 +8,7 @@ if(!MONGO_URI){
     throw new Error("Something is wrong with your key");
 }
 
-const DB_NAME = "cs-391-jeff-dis-7";
+const DB_NAME = "cs-391-Calendar-project";
 
 export const USERS_COLLECTION = "users-collection";
 

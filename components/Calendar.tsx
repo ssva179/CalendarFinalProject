@@ -16,7 +16,6 @@ import { Drawer, Box } from "@mui/material";
 
 // Components
 import EventCard from "./EventCard";
-import Nav from "@/components/Nav";
 
 // Helpers
 function toFCEvents(events: EventProps[]) {
@@ -30,6 +29,7 @@ function toFCEvents(events: EventProps[]) {
 }
 
 // Event Detail Drawer
+// Displays an overlay on the right about an Event
 function EventDetailDrawer({ event, onClose }: { event: EventProps | null; onClose: () => void }) {
     return (
         <Drawer
@@ -63,21 +63,23 @@ export function Calendar({ calendar }: { calendar: CalendarProps }) {
     };
 
     return (
-
         <Box
             sx={{
                 height: "100%",
+                backgroundColor: "#D2C4B4",
                 display: "flex",
                 flexDirection: "column",
-                "& .fc": { fontFamily: "inherit", flex: 1 },
-                "& .fc-button": {
-                    textTransform: "none !important",
-                    fontFamily: "inherit !important",
-                },
-                "& .fc-event": { cursor: "pointer", borderRadius: "4px !important" },
-                "& .fc-daygrid-event": { px: "4px" },
+                "& .fc": { fontFamily: "inherit", flex: 1, color: "#000" },
+                "& .fc-theme-standard td, & .fc-theme-standard th": { borderColor: "#000" },
+                "& .fc-theme-standard .fc-scrollgrid": { borderColor: "#000" },
+                "& .fc-col-header-cell": { color: "#000" },
+                "& .fc-daygrid-day-number": { color: "#000" },
+                border: "2px solid #000",
+                borderRadius: 4,
+                padding: 3
             }}
         >
+
             <FullCalendar
                 ref={calendarRef}
                 plugins={[dayGridPlugin, timeGridPlugin, multiMonthPlugin, interactionPlugin]}

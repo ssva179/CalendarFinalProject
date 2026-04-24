@@ -45,7 +45,7 @@ export default function EventCard({ event, onClose }: EventCardProps) {
                 sx={{
                     px: 3,
                     py: 2.5,
-                    bgcolor: "primary.main",
+                    backgroundColor: "primary.main",
                     color: "primary.contrastText",
                     display: "flex",
                     alignItems: "flex-start",

@@ -1,22 +1,22 @@
 "use server";
 
-import { EventProps } from "@/types";
+import { stringEvent } from "@/types";
 import getCollection from "@/db";
 
 export default async function createNewEvent(
     name: string,
     start: Date,
-    end: Date, 
+    end: Date,
     notes: string[],
     userEmail: string
-): Promise<EventProps | null> {
+): Promise<stringEvent | null> {
+
     const e = {
         name,
         start,
-        end, 
+        end,
         notes,
         userEmail,
-        eventSource: "manual",
     };
 
     const eventsCollection = await getCollection("events-collection");
@@ -26,5 +26,12 @@ export default async function createNewEvent(
         return null;
     }
 
-    return {...e, id:res.insertedId.toHexString(),};
+    return {
+        name,
+        start: start.toISOString(),
+        end: end.toISOString(),
+        notes,
+        userEmail,
+        id: res.insertedId.toHexString(),
+    };
 }

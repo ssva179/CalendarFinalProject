@@ -2,8 +2,10 @@
 
 import getCollection, { USERS_COLLECTION } from "@/db";
 import { auth } from "@/lib/auth";
+import { User } from "@/types";
 
-export default async function updateProfile(name: string) {
+export default async function updateProfile(data: {name: string; phone: string; bio: string;
+}) {
     const session = await auth();
 
     if (!session?.user?.email) {
@@ -16,11 +18,12 @@ export default async function updateProfile(name: string) {
         { email: session.user.email },
         {
             $set: {
-                name,
+                name: data.name,
+                phone: data.phone,
+                bio: data.bio,
                 hasProfile: true,
             },
         }
     );
-
     return null;
 }

@@ -19,11 +19,12 @@
     "@fullcalendar/react": "^6.1.20",
     "@fullcalendar/timegrid": "^6.1.20",
     "@mui/icons-material": "^9.0.0",
+    "@mui/joy": "^5.0.0-beta.52",
     "@mui/material": "^9.0.0",
     "mongodb": "^6.21.0",
     "mui": "^0.0.1",
     "next": "16.2.3",
-    "next-auth": "^4.24.14",
+    "next-auth": "^5.0.0-beta.31",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "styled-components": "^6.4.0"

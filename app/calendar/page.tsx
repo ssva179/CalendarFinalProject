@@ -1,24 +1,15 @@
+import { Box, Typography } from '@mui/material';
+import Nav from "@/components/Nav";
+import Header from "@/components/Header";
 import Calendar from '@/components/Calendar';
 import WidgetsPanel from '@/components/WidgetsPanel';
 import getAllEvents from "@/lib/getAllEvents";
 
-import styled from 'styled-components';
-import { Box } from '@mui/material';
-import Nav from "@/components/Nav";
-import Header from "@/components/Header";
-
-const StyledMain = styled.main`
-    width: 100%;
-    height: 90vh;
-    background: #F3E3D0;
-    padding: 24px;
-    box-sizing: border-box;
-`;
-
 export default async function Home() {
     const events = await getAllEvents();
 
-    const calendar = {id: "cal-1",
+    const calendar = {
+        id: "cal-1",
         name: "My Calendar",
         events,
     };
@@ -26,25 +17,51 @@ export default async function Home() {
     return (
         <>
             <Header />
-            <Nav/>
+            <Nav />
             <Box
                 component="main"
                 sx={{
                     width: "100%",
-                    height: "90vh",
+                    height: "100%",
                     background: "#F3E3D0",
-                    padding: "24px",
+                    padding: 5,
                     boxSizing: "border-box",
                 }}
             >
-                {/* Calendar and Widgets */}
-                <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: 'calc(100% - 60px)' }}>
-                    {/* Calendar view and arrows */}
-                    <Box sx={{ height: "80vh", bgcolor: "#D2C4B4" }}>
-                        <Calendar calendar={calendar} />
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: { xs: "column", md: "row" },
+                        justifyContent: "space-between",
+                        gap: 5,
+                    }}
+                >
+                    {/* Calendar panel */}
+                    <Box sx={{ flex: 1 }}>
+                        <Typography
+                            variant="h4"
+                            sx={{
+                                fontWeight: 700,
+                                letterSpacing: "0.05em",
+                                textTransform: "uppercase",
+                                borderLeft: "4px solid",
+                                borderColor: "primary.main",
+                                pl: 1.5,
+                                mb: 2,
+                                color: "#000",
+                            }}
+                        >
+                            {calendar.name}
+                        </Typography>
+                        <Box sx={{ height: { xs: "60vh", md: "80vh" } }}>
+                            <Calendar calendar={calendar} />
+                        </Box>
                     </Box>
+
                     {/* Widget panel */}
-                    <WidgetsPanel />
+                    <Box sx={{ width: { xs: "100%", md: "280px" }, flexShrink: 0, margin: "auto" }}>
+                        <WidgetsPanel />
+                    </Box>
                 </Box>
             </Box>
         </>

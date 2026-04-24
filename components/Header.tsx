@@ -4,6 +4,11 @@ import styled from 'styled-components';
 const StyledTitle = styled.h1`
     font-size: calc(10px + 2vw);
     color: #0a0a0a;
+    transition: color 0.2s ease, letter-spacing 0.2s ease;
+
+    &:hover {
+        color: #ffffff;
+    }
 `;
 
 const StyledHeader = styled.header`
@@ -13,6 +18,7 @@ const StyledHeader = styled.header`
     justify-content: center;
     align-items: center;
     background: #81A6C6;
+    font-weight: 700;
 `;
 
 export default function Header() {
