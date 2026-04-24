@@ -127,6 +127,8 @@ export default function EventCard({ event, onClose }: EventCardProps) {
             </Box>
 
             {/* Footer */}
+            {/*delete button logic is Tonito's part, impliments the delete logic from deleteEvent.ts and refreshes 
+            the page after and closes the event card so back on calendar page */}
             <Box sx={{ px: 3, py: 2, borderTop: "1px solid #b8a48f", borderColor: "#b8a48f " }}>
                 <Button
                     variant="outlined"
