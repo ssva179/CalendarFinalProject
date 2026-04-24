@@ -48,6 +48,9 @@ export type User = {
     email: string;
     name: string;
     hasProfile: boolean;
+    bio: string;
+    phone: string;
+    school: string;
 }
 
 export type stringEvent = {

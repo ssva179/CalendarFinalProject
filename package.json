@@ -19,6 +19,7 @@
     "@fullcalendar/react": "^6.1.20",
     "@fullcalendar/timegrid": "^6.1.20",
     "@mui/icons-material": "^9.0.0",
+    "@mui/joy": "^5.0.0-beta.52",
     "@mui/material": "^9.0.0",
     "mongodb": "^6.21.0",
     "mui": "^0.0.1",

@@ -54,13 +54,13 @@ export default function NavMenu() {
                 }}
             >
                 <MenuItem onClick={handleClose}>
-                    <Link href={'/profile'}>Profile</Link>
+                    <Link href={'/profile'}>PROFILE</Link>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                     <Link href={'/calendar/add'}>ADD EVENT</Link>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
-                    <Link href={'/calendar/import'}>IMPORT .ics FILE</Link>
+                    <Link href={'/calendar/import'}>IMPORT CALENDAR</Link>
                 </MenuItem>
                 {/* SWITCH LOGIN LOGOUT */}
                 {auth}

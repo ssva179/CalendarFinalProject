@@ -7,21 +7,23 @@ import updateProfile from "@/lib/profile";
 export default function ProfileForm() {
     const router = useRouter();
     const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [bio, setBio] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
+    //{/* getting all styling tools from official tailwindcss.com */}
     return (
         <form
-            className="w-50/100 h-96 rounded-xl p-4 bg-fuchsia-200 shadow-xl border-3 border-double border-red-900"
+            className="flex flex-col gap-4 w-130 h-150 rounded-xl p-5 m-20 items-center bg-white shadow-xl"
             onSubmit={(e) => {
                 e.preventDefault();
 
-                updateProfile(name)
+                updateProfile({name, phone, bio})
                     .then((res) => {
                         if (res?.message) {
                             setErrorMessage(res.message);
                             return;
                         }
-
                         setErrorMessage("");
                         setName("");
                         router.push("/calendar");
@@ -31,16 +33,30 @@ export default function ProfileForm() {
                     });
             }}
         >
-            <h2 className="text-2xl font-serif italic p-4 text-center text-black">
+            <h2 className="flex flex-col items-center  p-6 font-semibold text-[#81a6c6] text-2xl text-center">
                 Create Profile
             </h2>
 
             <input
-                className="w-80/100 bg-white text-black p-2 rounded shadow-xl border-3 border-double border-red-900"
+                className="w-80/100  h-10/100 bg-white text-black p-2 rounded-lg shadow-sm border border-gray-300"
                 type="text"
                 placeholder="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+            />
+            <input
+                className="w-80/100  h-10/100 bg-white text-black p-2 rounded-lg shadow-sm border border-gray-300"
+                type="text"
+                placeholder="phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+            />
+            <input
+                className="w-80/100  h-20/100 bg-white text-black p-2 rounded-lg shadow-sm border border-gray-300"
+                type="text"
+                placeholder="bio"
+                value={bio}
+                onChange={(e) => setBio(e.target.value)}
             />
 
             {errorMessage && (
@@ -50,9 +66,9 @@ export default function ProfileForm() {
             <div className="w-full flex justify-center m-2">
                 <button
                     type="submit"
-                    className="bg-indigo-400 w-25/100 text-white px-4 py-2 rounded shadow-xl border-3 border-double border-red-900"
+                    className="bg-[#81a6c6] w-80/100 text-white font-bold p-3 rounded shadow-xl hover:bg-blue-900 transition-discrete"
                 >
-                    Save
+                    SAVE
                 </button>
             </div>
         </form>
