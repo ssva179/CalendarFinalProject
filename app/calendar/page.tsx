@@ -1,4 +1,4 @@
-import {Box, Typography} from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Nav from "@/components/Nav";
 import Header from "@/components/Header";
 import Calendar from '@/components/Calendar';
@@ -8,7 +8,8 @@ import getAllEvents from "@/lib/getAllEvents";
 export default async function Home() {
     const events = await getAllEvents();
 
-    const calendar = {id: "cal-1",
+    const calendar = {
+        id: "cal-1",
         name: "My Calendar",
         events,
     };
@@ -16,22 +17,27 @@ export default async function Home() {
     return (
         <>
             <Header />
-            <Nav/>
+            <Nav />
             <Box
                 component="main"
                 sx={{
-                    width: "100vw",
-                    height: "100vh",
+                    width: "100%",
+                    height: "100%",
                     background: "#F3E3D0",
-                    padding: "24px",
+                    padding: 5,
                     boxSizing: "border-box",
                 }}
             >
-                {/* Calendar and Widgets */}
-                <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: '85vh' }}>
-
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: { xs: "column", md: "row" },
+                        justifyContent: "space-between",
+                        gap: 5,
+                    }}
+                >
                     {/* Calendar panel */}
-                    <Box sx={{ height: "80vh", width: "75vw"}}>
+                    <Box sx={{ flex: 1 }}>
                         <Typography
                             variant="h4"
                             sx={{
@@ -42,17 +48,18 @@ export default async function Home() {
                                 borderColor: "primary.main",
                                 pl: 1.5,
                                 mb: 2,
-                                color: "#000"
+                                color: "#000",
                             }}
                         >
                             {calendar.name}
                         </Typography>
-
-                        <Calendar calendar={calendar} />
+                        <Box sx={{ height: { xs: "60vh", md: "80vh" } }}>
+                            <Calendar calendar={calendar} />
+                        </Box>
                     </Box>
 
                     {/* Widget panel */}
-                    <Box>
+                    <Box sx={{ width: { xs: "100%", md: "280px" }, flexShrink: 0, margin: "auto" }}>
                         <WidgetsPanel />
                     </Box>
                 </Box>

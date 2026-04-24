@@ -13,8 +13,7 @@ export default function WidgetsPanel() {
     return (
         <Box
             sx={{
-                width: 300,
-                height: "100%",
+                width: { xs: "100%", md: 300 }, // width: 300,
                 bgcolor: "#e0e0e0", // background: "#F3E3D0",
                 borderRadius: 4,
                 p: 3,
