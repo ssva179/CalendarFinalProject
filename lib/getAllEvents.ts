@@ -5,7 +5,7 @@ export default async function getAllEvents(): Promise<EventProps []> {
     const eventsCollection = await getCollection("events-collection");
     const data = await eventsCollection.find().toArray();
 
-    return data.map((e: any) => ({
+    return data.map((e) => ({
         id: e._id.toHexString(),
         name: e.name,
         notes: e.notes || [],
