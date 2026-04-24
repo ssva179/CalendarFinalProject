@@ -15,7 +15,7 @@ export default function WidgetsPanel() {
             sx={{
                 width: 300,
                 height: "100%",
-                backgroundColor: "#e0e0e0", // background: "#F3E3D0",
+                bgcolor: "#e0e0e0", // background: "#F3E3D0",
                 borderRadius: 4,
                 p: 3,
                 display: "flex",

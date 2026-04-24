@@ -82,7 +82,7 @@ export default function InvitesWidget() {
             {invites.map((invite) => (
                 <Box
                     key={invite.id}
-                    sx={{ color: "#fff", borderRadius: 2, p: 1.5, border: "1px solid #ccc" }}
+                    sx={{ bgcolor: "#fff", borderRadius: 2, p: 1.5, border: "1px solid #ccc" }}
                 >
                     <Typography variant="body2" sx={{ fontWeight: 600 }}>
                         {invite.eventSnapshot.name}
