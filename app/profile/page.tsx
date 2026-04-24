@@ -27,6 +27,7 @@ export default async function ProfilePage() {
             </div>
         );
     }
+    //{/* getting all styling tools from official tailwindcss.com */}
     return (
         <>
             <Header />
