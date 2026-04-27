@@ -22,15 +22,11 @@ export default function WidgetsPanel() {
                 border: "1px solid #000",
             }}
         >
-            <Typography variant="h6" sx={{ textAlign: "center", color: "#000" }}>
-                Widgets
-            </Typography>
+            <Typography variant="h6" sx={{ textAlign: "center", color: "#000" }}>Widgets</Typography>
 
             {/* --- Pending invites (received) --- */}
             <Box>
-                <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1, color: "#000"  }}>
-                    Invites
-                </Typography>
+                <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1, color: "#000"  }}>Invites</Typography>
                 <InvitesWidget />
             </Box>
 

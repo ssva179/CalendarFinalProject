@@ -1,8 +1,7 @@
 "use client";
 
 // Small form to invite another user (by email) to one of your events.
-// Pulls your own upcoming events into a dropdown so you don't have to
-// know an event's database ID.
+// Pulls your own upcoming events into a dropdown so you don't have to know an event's database ID.
 // Responsibility: Bidipta.
 
 import { useEffect, useState } from "react";
@@ -21,7 +20,7 @@ type Feedback = { kind: "success" | "error"; msg: string };
 const [feedback, setFeedback] = useState<Feedback | null>(null);
 
     // Load the user's events for the dropdown. Reuses /api/events/upcoming
-    // with a wide 365-day window so the dropdown is useful year-round.
+    // with a wide 365-day window so the dropdown is useful year round.
     useEffect(() => {
         (async () => {
             try {
@@ -77,9 +76,7 @@ const [feedback, setFeedback] = useState<Feedback | null>(null);
                     onChange={(e) => setEventId(e.target.value)}
                     fullWidth
                 >
-                    <MenuItem value="">
-                        <em>Select one of your events</em>
-                    </MenuItem>
+                    <MenuItem value=""><em>Select one of your events</em></MenuItem>
                     {events.map((e) => (
                         <MenuItem key={e.id} value={e.id}>
                             {e.name} — {e.start.toLocaleDateString()}

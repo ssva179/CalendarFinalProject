@@ -20,19 +20,23 @@ export default async function respondToInvite(
     }
 
     const invite = await invitesCollection.findOne({ _id: inviteObjectId });
-    if (!invite) return false;
+    if (!invite) 
+        return false;
 
     // Authorization: only the invitee can respond to their own invite.
-    if (invite.toEmail !== userEmail) return false;
+    if (invite.toEmail !== userEmail) 
+        return false;
 
     // Can't respond twice cus it would double insert the event.
-    if (invite.status !== "pending") return false;
+    if (invite.status !== "pending") 
+        return false;
 
     const updateRes = await invitesCollection.updateOne(
         { _id: inviteObjectId },
         { $set: { status: response, respondedAt: new Date() } },
     );
-    if (!updateRes.acknowledged) return false;
+    if (!updateRes.acknowledged) 
+        return false;
 
     // On accept: drop a copy of the event onto the invitee's calendar.
     // We keep a small audit trail so the calendar can later show "shared by X" if the team wants that.
@@ -49,5 +53,5 @@ export default async function respondToInvite(
         });
     }
 
-    return true;
+        return true;
 }

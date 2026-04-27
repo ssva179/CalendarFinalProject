@@ -35,7 +35,8 @@ export default function InvitesWidget() {
                 },
             }));
             setInvites(parsed);
-        } finally {
+        } 
+        finally {
             setLoading(false);
         }
     }
@@ -56,7 +57,8 @@ export default function InvitesWidget() {
                 // Remove from pending list immediately — no need to refetch.
                 setInvites((prev) => prev.filter((i) => i.id !== id));
             }
-        } finally {
+        } 
+        finally {
             setRespondingId(null);
         }
     }
@@ -71,9 +73,7 @@ export default function InvitesWidget() {
 
     if (invites.length === 0) {
         return (
-            <Typography variant="body2" sx={{ color: "text.secondary", fontStyle: "italic" }}>
-                No pending invites.
-            </Typography>
+            <Typography variant="body2" sx={{ color: "text.secondary", fontStyle: "italic" }}>No pending invites.</Typography>
         );
     }
 
@@ -84,12 +84,8 @@ export default function InvitesWidget() {
                     key={invite.id}
                     sx={{ bgcolor: "#fff", borderRadius: 2, p: 1.5, border: "1px solid #ccc" }}
                 >
-                    <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                        {invite.eventSnapshot.name}
-                    </Typography>
-                    <Typography variant="caption" sx={{ display: "block", color: "text.secondary" }}>
-                        from {invite.fromEmail}
-                    </Typography>
+                    <Typography variant="body2" sx={{ fontWeight: 600 }}>{invite.eventSnapshot.name}</Typography>
+                    <Typography variant="caption" sx={{ display: "block", color: "text.secondary" }}>from {invite.fromEmail}</Typography>
                     <Typography variant="caption" sx={{ display: "block", color: "text.secondary" }}>
                         {invite.eventSnapshot.start.toLocaleString(undefined, {
                             month: "short",
@@ -107,8 +103,7 @@ export default function InvitesWidget() {
                             disabled={respondingId === invite.id}
                             onClick={() => respond(invite.id, "accepted")}
                         >
-                            Accept
-                        </Button>
+                            Accept</Button>
                         <Button
                             size="small"
                             variant="outlined"
@@ -117,8 +112,7 @@ export default function InvitesWidget() {
                             disabled={respondingId === invite.id}
                             onClick={() => respond(invite.id, "declined")}
                         >
-                            Decline
-                        </Button>
+                            Decline</Button>
                     </Stack>
                 </Box>
             ))}

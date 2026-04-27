@@ -12,7 +12,8 @@ export default async function sendInvite(
     toEmail: string,
 ): Promise<InviteProps | null> {
     // Inviting yourself is pointless — reject early.
-    if (fromEmail === toEmail) return null;
+    if (fromEmail === toEmail) 
+        return null;
 
     // Look up the event so we can snapshot it onto the invite.
     const eventsCollection = await getCollection(EVENTS_COLLECTION);
@@ -22,10 +23,12 @@ export default async function sendInvite(
     } catch {
         return null; // invalid ObjectId
     }
-    if (!event) return null;
+    if (!event) 
+        return null;
 
     // Only the event owner can invite others to it.
-    if (event.userEmail !== fromEmail) return null;
+    if (event.userEmail !== fromEmail) 
+        return null;
 
     const invitesCollection = await getCollection(INVITES_COLLECTION);
 
@@ -35,7 +38,8 @@ export default async function sendInvite(
         toEmail,
         status: "pending",
     });
-    if (existing) return null;
+    if (existing) 
+        return null;
 
     const doc = {
         eventId,
@@ -53,6 +57,5 @@ export default async function sendInvite(
 
     const res = await invitesCollection.insertOne(doc);
     if (!res.acknowledged) return null;
-
-    return { ...doc, id: res.insertedId.toHexString() };
+        return { ...doc, id: res.insertedId.toHexString() };
 }
