@@ -4,10 +4,27 @@ import Header from "@/components/Header";
 import Calendar from '@/components/Calendar';
 import WidgetsPanel from '@/components/WidgetsPanel';
 import getAllEvents from "@/lib/getAllEvents";
+import { auth } from "@/lib/auth";
+
 
 export default async function Home() {
-    const events = await getAllEvents();
 
+    {/*adding the actual events cvreated by createNewEvent.ts 
+    and using getAllEvents.ts to display them all is tonitos part, instead of displaying dumby calendar*/}
+    
+    //this gets the current logged in user from the session
+    const session = await auth();
+    //and this gets the userEmail from that session after making sure one exists
+    if (!session?.user?.email) {
+        return { message: "Not authenticated" };
+    }
+    const userEmail = session.user.email
+
+    //filters events by user and gets them
+    const events = await getAllEvents(userEmail);
+
+    //this creates a calendar object that is passed as the component and groups all the the 
+    //data the ui needs to make the calendar view 
     const calendar = {
         id: "cal-1",
         name: "My Calendar",
