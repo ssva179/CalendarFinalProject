@@ -1,6 +1,5 @@
 // Sidebar panel composing all three widgets.
-// Styled with MUI's sx prop — that's Emotion (CSS-in-JS), which satisfies
-// the project's CSS-in-JS requirement.
+// Styled with MUI's sx prop 
 // Responsibility: Bidipta.
 "use client";
 import { Box, Typography, Divider } from "@mui/material";

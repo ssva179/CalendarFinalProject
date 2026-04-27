@@ -25,7 +25,7 @@ export default async function respondToInvite(
     // Authorization: only the invitee can respond to their own invite.
     if (invite.toEmail !== userEmail) return false;
 
-    // Can't respond twice — would double-insert the event.
+    // Can't respond twice cus it would double insert the event.
     if (invite.status !== "pending") return false;
 
     const updateRes = await invitesCollection.updateOne(
@@ -35,8 +35,7 @@ export default async function respondToInvite(
     if (!updateRes.acknowledged) return false;
 
     // On accept: drop a copy of the event onto the invitee's calendar.
-    // We keep a small audit trail so the calendar can later show
-    // "shared by X" if the team wants that.
+    // We keep a small audit trail so the calendar can later show "shared by X" if the team wants that.
     if (response === "accepted") {
         const eventsCollection = await getCollection(EVENTS_COLLECTION);
         await eventsCollection.insertOne({

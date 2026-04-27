@@ -1,6 +1,6 @@
 // REST endpoints for invites.
-//   GET  /api/invites?status=pending   -> list invites for the signed-in user
-//   POST /api/invites                  -> send a new invite
+//   GET  /api/invites?status=pending   -> list invites for the signed in user
+//   POST /api/invites                  --> sends a new invite
 // Responsibility: Bidipta.
 
 import { NextRequest, NextResponse } from "next/server";
