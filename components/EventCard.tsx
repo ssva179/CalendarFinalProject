@@ -1,3 +1,4 @@
+// Edison (UI) + Tonito (Add/Delete Events)
 "use client";
 
 import Link from "next/link";
@@ -22,7 +23,6 @@ function formatDate(date: Date): string {
         day: "numeric",
     });
 }
-
 function formatTime(date: Date): string {
     return date.toLocaleTimeString("en-US", {
         hour: "numeric",
@@ -30,6 +30,7 @@ function formatTime(date: Date): string {
     });
 }
 
+//
 export type EventCardProps = {
     event: EventProps;
     onClose: () => void;
@@ -56,6 +57,8 @@ export default function EventCard({ event, onClose }: EventCardProps) {
                 <Typography variant="h6" sx={{ lineHeight: 1.3, fontWeight: 600 }}>
                     {event.name}
                 </Typography>
+
+                {/* Close event detail view */}
                 <IconButton
                     onClick={onClose}
                     size="small"
@@ -66,6 +69,7 @@ export default function EventCard({ event, onClose }: EventCardProps) {
             </Box>
 
             {/* Body */}
+            {/* Time */}
             <Box sx={{ px: 3, py: 3, flex: 1, overflowY: "auto" }}>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
 
@@ -79,7 +83,7 @@ export default function EventCard({ event, onClose }: EventCardProps) {
                             <Typography variant="body1">{formatDate(event.start)}</Typography>
                             {event.start.toDateString() !== event.end.toDateString() && (
                                 <Typography variant="body2" color="text.secondary">
-                                    → {formatDate(event.end)}
+                                    {formatDate(event.end)}
                                 </Typography>
                             )}
                         </Box>
@@ -102,12 +106,16 @@ export default function EventCard({ event, onClose }: EventCardProps) {
                     {event.notes.length > 0 && (
                         <>
                             <Divider sx={{ borderColor: "#c9b8a3" }}/>
+
                             <Box sx={{ display: "flex", gap: 1.5, alignItems: "flex-start" }}>
+
                                 <NotesIcon fontSize="small" sx={{ mt: 0.25, color: "text.secondary" }} />
+
                                 <Box sx={{ flex: 1 }}>
                                     <Typography variant="body2" color="text.secondary" sx={{ mb: 0.5 }}>
                                         Notes
                                     </Typography>
+
                                     <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
                                         {event.notes.map((note, i) => (
                                             <Chip

@@ -1,6 +1,5 @@
 // Edison (UI) + Stephanie (Auth)
 
-// https://mui.com/material-ui/react-menu/
 "use client"
 
 import * as React from 'react';
@@ -12,15 +11,21 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import {Box} from "@mui/material";
 
+// https://mui.com/material-ui/react-menu/
 export default function NavMenu() {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
 
+    // null -> menu is closed, HTMLElement -> the menu is open
+    const [anchorElement, setAnchorElement] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorElement);
+
+    // store the clicked Dashboard Menu
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
+        setAnchorElement(event.currentTarget);
     };
+
+    // set anchor to null -> closes menu
     const handleClose = () => {
-        setAnchorEl(null);
+        setAnchorElement(null);
     };
 
     //Using session hook in NextAuth to see if were signed in
@@ -31,9 +36,9 @@ export default function NavMenu() {
         //     <SignOut />
         // </MenuItem>
 
-        // CHECK ORIGINAL IN /component/authentication/SignOut.tsx
-        // MOVED FUNCTION DIRECTLY TO MenuItem SO IT TAKES 100% OF THE SPACE
-        // ELSE THE BUTTON WOULD NOT WORK IF NOT CLICKED IN A SPECIFIC PLACE
+        // See the original here: /component/authentication/SignOut.tsx
+        // Moved function directly into MenuItem so it takes 100% of its space,
+        // or else the button wouldn't work if it wasn't clicked in a specific place
         <MenuItem onClick={() => signOut({ callbackUrl: "/login" })}>
             Sign Out
         </MenuItem>
@@ -45,6 +50,7 @@ export default function NavMenu() {
 
     return (
         <Box>
+            {/* Dashboard Button */}
             <Button
                 id="basic-button"
                 aria-controls={open ? 'basic-menu' : undefined}
@@ -54,9 +60,11 @@ export default function NavMenu() {
             >
                 Dashboard
             </Button>
+
+            {/* Menu that opens up */}
             <Menu
                 id="basic-menu"
-                anchorEl={anchorEl}
+                anchorEl={anchorElement}
                 open={open}
                 onClose={handleClose}
                 slotProps={{
@@ -65,19 +73,12 @@ export default function NavMenu() {
                     },
                 }}
             >
-                <MenuItem component={Link} href={'/calendar'} onClick={handleClose}>
-                    My Calendar
-                </MenuItem>
-                <MenuItem component={Link} href={'/profile'} onClick={handleClose}>
-                    My Profile
-                </MenuItem>
-                <MenuItem component={Link} href={'/calendar/add'} onClick={handleClose}>
-                    ADD EVENT
-                </MenuItem>
-                <MenuItem component={Link} href={'/calendar/import'} onClick={handleClose}>
-                    IMPORT .ics FILE
-                </MenuItem>
-                {/* SWITCH LOGIN LOGOUT */}
+                <MenuItem component={Link} href={'/calendar'} onClick={handleClose}>My Calendar</MenuItem>
+                <MenuItem component={Link} href={'/profile'} onClick={handleClose}>My Profile</MenuItem>
+                <MenuItem component={Link} href={'/calendar/add'} onClick={handleClose}>ADD EVENT</MenuItem>
+                <MenuItem component={Link} href={'/calendar/import'} onClick={handleClose}>IMPORT .ics FILE</MenuItem>
+
+                {/* switches between Login or Sign Out MenuItem buttons with auth logic */}
                 {auth}
             </Menu>
         </Box>

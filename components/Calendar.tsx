@@ -1,24 +1,19 @@
+// Edison (UI)
 "use client"
 
 import { useState, useRef } from "react";
 import { EventProps, CalendarProps } from "@/types";
-
-// FullCalendar imports
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import multiMonthPlugin from "@fullcalendar/multimonth";
 import interactionPlugin from "@fullcalendar/interaction";
 import { EventClickArg } from "@fullcalendar/core";
-
-// MUI imports
 import { Drawer, Box } from "@mui/material";
-
-// Components
 import EventCard from "./EventCard";
 
 // Helpers
-function toFCEvents(events: EventProps[]) {
+function toFullCalendarEvents(events: EventProps[]) {
     return events.map((e) => ({
         id: e.id,
         title: e.name,
@@ -90,7 +85,7 @@ export function Calendar({ calendar }: { calendar: CalendarProps }) {
                     right: "multiMonthYear,dayGridMonth,timeGridWeek",
                 }}
                 buttonText={{ today: "Today", month: "Month", week: "Week", year: "Year" }}
-                events={toFCEvents(calendar.events)}
+                events={toFullCalendarEvents(calendar.events)}
                 eventClick={handleEventClick}
                 height="100%"
                 multiMonthMaxColumns={3}

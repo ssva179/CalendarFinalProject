@@ -1,3 +1,5 @@
+// Edison (UI) + Tonito(Add/Delete Events)
+
 import { Box, Typography } from '@mui/material';
 import Nav from "@/components/Nav";
 import Header from "@/components/Header";
@@ -35,6 +37,8 @@ export default async function Home() {
         <>
             <Header />
             <Nav />
+
+            {/* Main */}
             <Box
                 component="main"
                 sx={{
@@ -45,6 +49,7 @@ export default async function Home() {
                     boxSizing: "border-box",
                 }}
             >
+                {/* Box for Calendar + Widgets */}
                 <Box
                     sx={{
                         display: "flex",
