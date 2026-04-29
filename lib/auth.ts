@@ -1,3 +1,5 @@
+//Job - Stephanie: Standard OAuth.js/GitHub authentication from lecture + adding db logic to store
+// "old" users, so in the future they are not prompted to create profile again.
 import NextAuth from "next-auth";
 import GitHub from "next-auth/providers/github";
 import getCollection, { USERS_COLLECTION } from "@/db";
@@ -13,6 +15,7 @@ if (!AUTH_GITHUB_ID || !AUTH_GITHUB_SECRET) {
     );
 }
 
+//making sure our email values are unique per user
 async function findEmail(email: string) {
     const users = await getCollection(USERS_COLLECTION);
     const exists = await users.findOne({ email });
@@ -21,7 +24,7 @@ async function findEmail(email: string) {
     }return false;
 }
 
-
+//We create user if valid email
 async function createUser(user: any) {
     const users = await getCollection(USERS_COLLECTION);
     return users.insertOne({
@@ -32,7 +35,8 @@ async function createUser(user: any) {
 }
 
 
-// If user doesn't exist we add to database
+// If user doesn't exist we add to database standard authjs implementation:
+//https://authjs.dev/guides/configuring-github
 export const { handlers, auth } = NextAuth({
     providers: [
         GitHub({

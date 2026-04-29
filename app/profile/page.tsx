@@ -1,3 +1,4 @@
+//Job - Stephanie:  authentication + profile
 import { auth } from "@/lib/auth"
 import { redirect } from "next/navigation"
 import getCollection, {USERS_COLLECTION} from "@/db";

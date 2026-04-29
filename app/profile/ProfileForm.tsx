@@ -1,3 +1,4 @@
+//Job - Stephanie: Profile creationg and updating to DB
 "use client";
 
 import { useState } from "react";
@@ -11,13 +12,13 @@ export default function ProfileForm() {
     const [bio, setBio] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
-    //{/* getting all styling tools from official tailwindcss.com */}
+
     return (
         <form
             className="flex flex-col gap-4 w-130 h-150 rounded-xl p-5 m-20 items-center bg-white shadow-xl"
             onSubmit={(e) => {
                 e.preventDefault();
-
+                //Using server side in lib to update the profile in DB
                 updateProfile({name, phone, bio})
                     .then((res) => {
                         if (res?.message) {
@@ -26,12 +27,14 @@ export default function ProfileForm() {
                         }
                         setErrorMessage("");
                         setName("");
+                        //After profile completion take user to calendar
                         router.push("/calendar");
                     })
                     .catch(() => {
                         setErrorMessage("Error updating profile");
                     });
             }}
+            //{/* getting all styling tools from official tailwindcss.com */}
         >
             <h2 className="flex flex-col items-center  p-6 font-semibold text-[#81a6c6] text-2xl text-center">
                 Create Profile

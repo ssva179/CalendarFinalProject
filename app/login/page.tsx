@@ -1,3 +1,4 @@
+//Job - Stephanie: Authentication
 "use client"
 import { signIn } from "next-auth/react"
 

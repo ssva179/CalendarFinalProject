@@ -1,3 +1,4 @@
+//Job - Stephanie: Authentication to signout
 "use client"
 import { signOut } from "next-auth/react"
 

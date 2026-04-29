@@ -1,3 +1,4 @@
+//Job - Stephanie: I initialized the database from how we previously did it in the mini projets
 import {Collection, Db, MongoClient} from "mongodb";
 export const EVENTS_COLLECTION = "events-collection";   // for widget invite 
 export const INVITES_COLLECTION = "invites-collection"; //for widget invite 

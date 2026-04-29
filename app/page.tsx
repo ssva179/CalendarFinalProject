@@ -1,3 +1,6 @@
+//Job - Stephanie : Implemented sign-in/authentication page redirection set up
+// So sign-in page doesn't render nav I removed header/nav from layour and just added them where
+//necessary.
 import { auth } from "@/lib/auth"
 import { redirect } from "next/navigation"
 import getCollection, {USERS_COLLECTION} from "@/db";
@@ -12,8 +15,9 @@ export default async function Home() {
     }
     const users = await getCollection(USERS_COLLECTION)
 
+    //we use the email as the unique identifier so we get it from session
     const user = await users.findOne({email: session.user.email,})
-    //if for some reason user is not in db
+    //extra check to see if for some reason user is not in db
     if (!user) {
         redirect("/login")
     }
