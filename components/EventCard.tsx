@@ -1,12 +1,10 @@
-// Edison (UI) + Tonito (Add/Delete Events)
+// Edison (UI + Calendar) + Tonito (Add/Delete Events)
 "use client";
 
-import Link from "next/link";
 import { EventProps } from "@/types";
 import deleteEvent from "@/lib/deleteEvent";
 import { useRouter } from "next/navigation";
 
-// MUI imports
 import { Box, Typography, IconButton, Chip, Divider, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
@@ -14,7 +12,8 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import NotesIcon from "@mui/icons-material/Notes";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 
-// Helpers
+// Helper functions
+// formats how an Event's Date (mm/dd/yy) should look like in the EventCard
 function formatDate(date: Date): string {
     return date.toLocaleDateString("en-US", {
         weekday: "long",
@@ -23,6 +22,7 @@ function formatDate(date: Date): string {
         day: "numeric",
     });
 }
+// formats the Event's Date time (00:00)
 function formatTime(date: Date): string {
     return date.toLocaleTimeString("en-US", {
         hour: "numeric",
@@ -30,12 +30,15 @@ function formatTime(date: Date): string {
     });
 }
 
-//
+// EventCardProps
+// used in the function EventCard
 export type EventCardProps = {
-    event: EventProps;
-    onClose: () => void;
+    event: EventProps; // event data
+    onClose: () => void; // callback function to close the event's detail view
 };
 
+// EventCard
+// inputs an EventCardProp to display (and close) a detail view for an Event clicked on the Calendar
 export default function EventCard({ event, onClose }: EventCardProps) {
     const router = useRouter();
 
@@ -102,7 +105,7 @@ export default function EventCard({ event, onClose }: EventCardProps) {
                         </Box>
                     </Box>
 
-                    {/* Notes */}
+                    {/* Event Notes */}
                     {event.notes.length > 0 && (
                         <>
                             <Divider sx={{ borderColor: "#c9b8a3" }}/>

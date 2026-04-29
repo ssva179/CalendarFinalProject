@@ -1,4 +1,4 @@
-// Edison (UI)
+// Edison (UI + Calendar)
 import styled from 'styled-components';
 import NavMenu from "@/components/NavMenu";
 

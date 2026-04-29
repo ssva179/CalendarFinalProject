@@ -1,4 +1,4 @@
-// Edison (UI)
+// Edison (UI + Calendar)
 import Link from "next/link";
 import styled from 'styled-components';
 

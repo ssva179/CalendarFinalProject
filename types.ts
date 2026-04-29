@@ -1,8 +1,9 @@
-// FEEL FREE TO EDIT OR CHANGE
+// FEEL FREE TO EDIT OR CHANGE - file created by Edison
 
 // An invite to a collaborational calendar from a user to another user
 export type InviteStatus = "pending" | "accepted" | "declined";
 
+// An invite from a User to another User to an Event
 export type InviteProps = {
     id: string;
     eventId: string;       // the original event being shared
@@ -21,7 +22,7 @@ export type InviteProps = {
     };
 };
 
-// An event in a calendar
+// An Event in a Calendar
 export type EventProps = {
     id: string;
     name: string;
@@ -31,19 +32,21 @@ export type EventProps = {
     userEmail: string; //added by bidipta for saftey, if need remove, u can 
 }
 
-// A user's calendar
+// A Calendar
 export type CalendarProps = {
     id: string;
     name: string;
     events: EventProps[];
 }
 
-export type UserProps = {
-    id: string;
-    username: string;
-    calendar: CalendarProps;
-}
+// // A User's Calendar - unused
+// export type UserProps = {
+//     id: string;
+//     username: string;
+//     calendar: CalendarProps;
+// }
 
+// A User
 export type User = {
     email: string;
     name: string;
