@@ -39,12 +39,12 @@ export type CalendarProps = {
     events: EventProps[];
 }
 
-// // A User's Calendar - unused
-// export type UserProps = {
-//     id: string;
-//     username: string;
-//     calendar: CalendarProps;
-// }
+// A User's Calendar - seems to be unused, but i'll keep the prop uncommented just in case something breaks
+export type UserProps = {
+    id: string;
+    username: string;
+    calendar: CalendarProps;
+}
 
 // A User
 export type User = {
