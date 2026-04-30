@@ -24,6 +24,7 @@ export default async function getUpcomingEvents(
         .sort({ start: 1 })
         .toArray();
 
+     // Same mongo -> typed object cleanup as getInvites.
     return data.map((e: any) => ({
         id: e._id.toHexString(),
         name: e.name,

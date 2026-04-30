@@ -1,5 +1,6 @@
 // Fetch invites addressed to a specific user, optionally filtered by status.
-// Responsibility: Bidipta (widgets + invites).
+//It is used by the InvitesWidget component 
+// Responsibility: Bidipta.
 
 import getCollection, { INVITES_COLLECTION } from "@/db";
 import { InviteProps, InviteStatus } from "@/types";
@@ -16,9 +17,11 @@ export default async function getInvites(
 
     const data = await invitesCollection
         .find(query)
-        .sort({ createdAt: -1 })  // newest first
+        .sort({ createdAt: -1 })  //newest first so the widget shows the most recent invite at the top.
         .toArray();
 
+
+    //convert Mongo's objectid and dates to strings/Dates so the frontend gets clean InviteProps objects
     return data.map((i: any) => ({
         id: i._id.toHexString(),
         eventId: i.eventId,
