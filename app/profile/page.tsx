@@ -1,4 +1,6 @@
 //Job - Stephanie:  authentication + profile
+//This page redirects users to either a profile form to create their profile or
+//to their profile page, where all their information is displayed.
 import { auth } from "@/lib/auth"
 import { redirect } from "next/navigation"
 import getCollection, {USERS_COLLECTION} from "@/db";

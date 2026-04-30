@@ -1,4 +1,6 @@
-//Job - Stephanie: Authentication to signout
+//Job - Stephanie: Authentication
+//signout component that allows user sign-out using NextAuth.
+//Client side tool and it is used directly in our NavMenu file.
 "use client"
 import { signOut } from "next-auth/react"
 

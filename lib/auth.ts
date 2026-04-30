@@ -1,5 +1,7 @@
-//Job - Stephanie: Standard OAuth.js/GitHub authentication from lecture + adding db logic to store
-// "old" users, so in the future they are not prompted to create profile again.
+//Job - Stephanie: Authentication
+// Standard OAuth.js/GitHub authentication from lecture + adding db logic to store
+//new users, so in the future only new users are prompted to create profile. This also
+//means that returning users don't need to create a profile again.
 import NextAuth from "next-auth";
 import GitHub from "next-auth/providers/github";
 import getCollection, { USERS_COLLECTION } from "@/db";

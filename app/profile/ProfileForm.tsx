@@ -1,4 +1,7 @@
-//Job - Stephanie: Profile creationg and updating to DB
+//Job - Stephanie: Profile creation and updating to DB
+//When the client is filling out their profile, this file is a client-side page that
+//collects the filled in information and then communicates with the server to send
+//to the database. This file also has the UI for the profile form.
 "use client";
 
 import { useState } from "react";

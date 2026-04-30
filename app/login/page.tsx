@@ -1,4 +1,6 @@
 //Job - Stephanie: Authentication
+//Client side file that is the signin page for our calendar
+//This page has the sign in ui and then connects to OAuth to log in with github
 "use client"
 import { signIn } from "next-auth/react"
 

@@ -1,4 +1,6 @@
-//Job - Stephanie: I initialized the database from how we previously did it in the mini projets
+//Job - Stephanie: Database
+// I initialized the database from how we previously did it in the mini projects.
+//We decided to create a database so that we could properly store events and users.
 import {Collection, Db, MongoClient} from "mongodb";
 export const EVENTS_COLLECTION = "events-collection";   // for widget invite 
 export const INVITES_COLLECTION = "invites-collection"; //for widget invite 

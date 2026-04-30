@@ -1,6 +1,7 @@
-//Job - Stephanie : Implemented sign-in/authentication page redirection set up
-// So sign-in page doesn't render nav I removed header/nav from layour and just added them where
-//necessary.
+//Job - Stephanie: Authentication and Sign-in
+// Implemented sign-in/authentication page and redirection set up
+//Sign-in page doesn't render nav, so I removed header/nav from layout and just added them where
+//necessary. This page redirects a user based on wether they are a new or returning user.
 import { auth } from "@/lib/auth"
 import { redirect } from "next/navigation"
 import getCollection, {USERS_COLLECTION} from "@/db";

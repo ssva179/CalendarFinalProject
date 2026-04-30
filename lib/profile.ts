@@ -1,4 +1,7 @@
 //Job - Stephanie:  authentication + profile
+//Server file that updates a users information in the database. To do this I verify whose
+//session we are in and that it is a valid session using a users email.
+//Then I use the update mongodb command to update the appropriate fields.
 "use server";
 
 import getCollection, { USERS_COLLECTION } from "@/db";
